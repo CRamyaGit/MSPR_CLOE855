@@ -156,12 +156,9 @@ jobs:
           host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd $HOME/www/
 
  
-            exit 1  # Quitter avec un code d'erreur
-          fi
+           
 ```
 **Procédure :**  
 
