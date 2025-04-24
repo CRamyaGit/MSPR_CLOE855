@@ -142,7 +142,7 @@ jobs:
 **Etape 2 - Création des secrets :**  
 Vous avez besoin de créer des secrets dans GitHUB afin de ne pas divulguer des informations sensibles aux internautes de passage dans votre repository (vos login, clés, dns, etc..). 
 -----
-Créer une Action dans votre repository GitHUB pour y deposer le script suivant (fichier .github/workflows/main.yml)
+Créer une Action dans votre repository GitHUB pour y deposer le script suivant (fichier .github/workflows/mainsecret.yml)
 ```
 name: Deploy website on push
 on: push
@@ -154,8 +154,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          username: projetnfsecret091
+          password: iCwpRiCu7(Pxzz((Ent*
 
  
            
@@ -165,12 +165,12 @@ jobs:
 1° - Creer un Secret :  
  . 1.1 - Settings >Secrets and Variables> Action> New Repository Secret.  
  . 1.2 - Name: Donner un nom au choix (par exemple "FTP_PASSWORD")..  
- . 1.3 - Secret : Mettre le mot de passe a crypter present dans le fichier main.yml..  
+ . 1.3 - Secret : Mettre le mot de passe a crypter present dans le fichier mainsecret.yml..  
  . 1.4 - Cliquer sur  "Add Secret".  .    
 2° - Vérifier qu'on retrouve le secret crée dans "Repository secrets":  
 3° - Appeler le "Secret":  
  . 3.1 - Cliquer sur "Actions".  
- . 3.2 - Ouvrir le fichier main.yml..  
+ . 3.2 - Ouvrir le fichier mainsecret.yml..  
  . 3.3 - Remplacer password:*** par la commande "password: ${{secrets.FTP_PASSWORD}}..  
  . 3.4 - Commit.  
 
@@ -214,7 +214,7 @@ Afin de pouvoir utiliser les API de la solution Alwaysdata (dans notre cas deman
 
 **ALWAYSDATA_SITE_ID** = Vous trouverez l'ID de votre site depuis l'interface d'administration Alwaysdata puis dans les paramètres de votre site. Il s'agit du petit engrenage à droite de votre site (dans le titre #XXXXX) XXXXX étant l'ID de votre site. Ne prenez pas le # mais juste les chiffres.
 
-Votre script CICD est à présent prêt à être déclanché. Celui-ci se déclenchera automatiquement à chaque Commit de votre code (c'est à dire à chaque modification de votre code dans Github). Procédez à une modification de votre code dans Github pour vérifier que votre action fonctionne bien correctement. Vous pouvez modifier ce Readme par exemple et faire ensuite votre Commit.    
+Votre script CICD est à présent prêt à être déclenché. Celui-ci se déclenchera automatiquement à chaque Commit de votre code (c'est à dire à chaque modification de votre code dans Github). Procédez à une modification de votre code dans Github pour vérifier que votre action fonctionne bien correctement. Vous pouvez modifier ce Readme par exemple et faire ensuite votre Commit.    
   
 Notions acquises de cette séquence :  
 Vous avez vu dans cette séquence comment créer des secrets GiHUB afin de mettre en place de l'industrialisation continue. Nous avons créé des secrets ainsi que des clés public et privée. L'utilité des scripts d'actions (C'est à dire des scripts exécutés lors des Commits) est très importante mais sortes malheureusement du cadre de cet atelier faute de temps. Toutefois, je vous invites à découvrir cet outil via les différentes sources du Web (Google, ChatGPT, etc..).  
